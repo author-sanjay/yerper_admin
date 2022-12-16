@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yerper_admin/Screens/OtpScreen/OtpScreen.dart';
 
-
 import '../../../constants.dart';
-
 
 class TextFields extends StatelessWidget {
   const TextFields({
@@ -36,26 +34,27 @@ class TextFields extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, bottom: 20),
-            child: Center(
-                child: Text(
-                    "Login and Start Earning with \n         Your Credit Card")),
+            child: Center(child: Text("Login As An Admin")),
           ),
           TextField(
             onChanged: (value) {
               print(value);
             },
-            decoration: new InputDecoration(labelText: "Phone Number"),
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
-            ],
+            decoration: new InputDecoration(labelText: "Email"),
+            
+          ),
+          TextField(
+            onChanged: (value) {
+              print(value);
+            },
+            decoration: new InputDecoration(labelText: "Password"),
+            
           ), // Only numbers can be entered
 
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: GestureDetector(
               onTap: (() {
-                
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -81,8 +80,7 @@ class TextFields extends StatelessWidget {
             padding: const EdgeInsets.only(top: 10),
             child: Center(
               child: GestureDetector(
-                onTap: (() {
-                }),
+                onTap: (() {}),
                 child: RichText(
                   text: TextSpan(
                     children: [
