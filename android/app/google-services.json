@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "663539826108",
+    "project_id": "yeperadmin",
+    "storage_bucket": "yeperadmin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663539826108:android:80be2ffd167c6b3bf97fb9",
+        "android_client_info": {
+          "package_name": "com.example.yerper_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663539826108-2u4386cgn2vdl33fflcf4l5bpljvb5ke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZn91oFiwPQemSaARMhweUIUl-1mVMXTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663539826108-2u4386cgn2vdl33fflcf4l5bpljvb5ke.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

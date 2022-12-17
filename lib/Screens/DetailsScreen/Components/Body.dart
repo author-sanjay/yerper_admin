@@ -34,7 +34,7 @@ class _BodyState extends State<Body> {
 
       width: MediaQuery.of(context).size.width - 30,
       child: Padding(
-        padding: const EdgeInsets.only(top: 25.0, left: 5.0, right: 5.0),
+        padding: const EdgeInsets.only( left: 5.0, right: 5.0),
         child: Column(
           children: <Widget>[
             RichText(

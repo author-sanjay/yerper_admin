@@ -1,7 +1,13 @@
-class User {
-  final String email;
-  final String password;
-  final int id;
+import 'package:flutter/cupertino.dart';
 
-  User({required this.email, required this.password, required this.id});
+class User extends ChangeNotifier {
+  late final String email;
+  late final String password;
+  late final int id;
+
+  void signin(String email, String password, int id) {
+    email = email;
+    password = password;
+    id = id;
+  }
 }

@@ -23,6 +23,6 @@ class ImageAndIcons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: size.height * 0.8, child: Center(child: Images(size: size)));
+        height: size.height * 0.4, child: Center(child: Images(size: size)));
   }
 }

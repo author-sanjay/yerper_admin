@@ -5,6 +5,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
 import 'package:yerper_admin/Screens/LoginScreen/LoginScreen.dart';
 import 'package:yerper_admin/User.dart';
@@ -35,11 +36,8 @@ class _TextFieldsState extends State<TextFields> {
     try {
       final result = jsonDecode(res.body);
       print(result);
-      User user = User(
-          email: result["email"],
-          id: result["id"],
-          password: result["password"]);
-
+      Provider.of<User>(context, listen: false)
+          .signin(result["email"], result["password"], result["id"]);
       Navigator.push(
         context,
         MaterialPageRoute(
