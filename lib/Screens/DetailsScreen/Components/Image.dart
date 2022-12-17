@@ -19,12 +19,12 @@ class Images extends StatefulWidget {
 }
 
 class _ImagesState extends State<Images> {
-  late String imgurl;
+  String? imgurl = null;
   @override
   Widget build(BuildContext context) {
     final Storage storage = Storage();
     return Container(
-        height: widget.size.height * 0.3,
+        height: widget.size.height * 0.8,
         width: widget.size.width * 0.75,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -36,37 +36,43 @@ class _ImagesState extends State<Images> {
                 color: kprimarycolor.withOpacity(0.29)),
           ],
         ),
-        child: ElevatedButton(
-          onPressed: () async {
-            final results = await FilePicker.platform.pickFiles(
-              allowMultiple: false,
-              type: FileType.image,
-            );
-            if (results == null) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text("File not selected"),
-              ));
-              return null;
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text("File selected"),
-              ));
-            }
-            final path = results.files.single.path;
-            final filename = results.files.single.name;
-            // ignore: avoid_print
-            storage
-                .uploadfile(path!, filename)
-                .then((data) => imgurl = storage.URL(filename) as String);
-            print(imgurl);
-          },
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(kbackgroundColor)),
-          child: Text(
-            "Upload\nImage",
-            style: TextStyle(
-                color: Colors.black, fontSize: 32, fontWeight: FontWeight.w300),
-          ),
-        ));
+        child: (imgurl == null)
+            ? ElevatedButton(
+                onPressed: () async {
+                  final results = await FilePicker.platform.pickFiles(
+                    allowMultiple: false,
+                    type: FileType.image,
+                  );
+                  if (results == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("File not selected"),
+                    ));
+                    return null;
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("File selected"),
+                    ));
+                  }
+                  final path = results.files.single.path;
+                  final filename = results.files.single.name;
+                  // ignore: avoid_print
+                  storage.uploadfile(path!, filename).then(((result) {
+                    imgurl = result;
+
+                    setState(() {});
+                  }));
+                },
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(kbackgroundColor)),
+                child: Text(
+                  "Upload\nImage",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 32,
+                      fontWeight: FontWeight.w300),
+                ),
+              )
+            : Image.network(imgurl!));
   }
 }
