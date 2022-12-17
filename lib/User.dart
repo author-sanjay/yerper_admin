@@ -1,9 +1,9 @@
 import 'dart:ffi';
 
 class User {
-  late String email;
-  late String password;
-  late int id;
+  final String email;
+  final String password;
+  final int id;
 
   User({required this.email, required this.password, required this.id});
 

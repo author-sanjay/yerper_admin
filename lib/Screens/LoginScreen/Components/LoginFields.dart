@@ -1,10 +1,12 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, avoid_print, unnecessary_new
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, avoid_print, unnecessary_new, use_build_context_synchronously
 
 import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
+import 'package:yerper_admin/Screens/LoginScreen/LoginScreen.dart';
 import 'package:yerper_admin/User.dart';
 
 import '../../../constants.dart';
@@ -30,12 +32,34 @@ class _TextFieldsState extends State<TextFields> {
         // body: JsonEncoder({})
         body: json);
 
-    final result = jsonDecode(res.body);
-    print(result);
-    User user = User(
-        email: result["email"], id: result["id"], password: result["password"]);
+    try {
+      final result = jsonDecode(res.body);
+      print(result);
+      User user = User(
+          email: result["email"],
+          id: result["id"],
+          password: result["password"]);
 
-    print(user.email);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
+      );
+    } catch (_) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+      );
+    }
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => HomeScreen(),
+    //   ),
+    // );
   }
 
   @override
