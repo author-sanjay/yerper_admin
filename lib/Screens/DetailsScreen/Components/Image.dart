@@ -3,15 +3,23 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:yerper_admin/Screens/service/storageservice.dart';
-
+import 'package:yerper_admin/modal/Deals.dart';
+import '../../../modal/Deals.dart';
+import './Body.dart';
 import '../../../constants.dart';
 
-class Images extends StatefulWidget {
-  const Images({
-    Key? key,
-    required this.size,
-  }) : super(key: key);
+Deals deal = Deals("", "", 0, "", "", "", "", "");
 
+class Images extends StatefulWidget {
+  final dynamic change;
+  Images(
+      {Key? key,
+      required this.size,
+      required this.photo,
+      this.change,
+      String? photourl})
+      : super(key: key);
+  String? photo;
   final Size size;
 
   @override
@@ -19,7 +27,7 @@ class Images extends StatefulWidget {
 }
 
 class _ImagesState extends State<Images> {
-  String? imgurl = null;
+// final dynamic change;
   @override
   Widget build(BuildContext context) {
     final Storage storage = Storage();
@@ -36,7 +44,7 @@ class _ImagesState extends State<Images> {
                 color: kprimarycolor.withOpacity(0.29)),
           ],
         ),
-        child: (imgurl == null)
+        child: (widget.photo == null)
             ? ElevatedButton(
                 onPressed: () async {
                   final results = await FilePicker.platform.pickFiles(
@@ -57,9 +65,13 @@ class _ImagesState extends State<Images> {
                   final filename = results.files.single.name;
                   // ignore: avoid_print
                   storage.uploadfile(path!, filename).then(((result) {
-                    imgurl = result;
+                    // deals("", "", "", "", "", "", 0, widget.photourl!);
 
-                    setState(() {});
+                    setState(() {
+                      deal.photo = result;
+                      widget.photo = result;
+                      print(widget.photo);
+                    });
                   }));
                 },
                 style: ButtonStyle(
@@ -73,6 +85,6 @@ class _ImagesState extends State<Images> {
                       fontWeight: FontWeight.w300),
                 ),
               )
-            : Image.network(imgurl!));
+            : Image.network(widget.photo!));
   }
 }

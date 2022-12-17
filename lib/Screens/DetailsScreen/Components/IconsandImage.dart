@@ -5,24 +5,23 @@ import 'package:yerper_admin/Screens/DetailsScreen/Components/Image.dart';
 import 'package:yerper_admin/Screens/DetailsScreen/Components/LeftIcons.dart';
 
 class ImageAndIcons extends StatelessWidget {
-  const ImageAndIcons({
-    Key? key,
-    required this.size,
-    required this.actualprice,
-    required this.offerPrice,
-    required this.card,
-    required this.earning,
-  }) : super(key: key);
+  var photourl;
 
-  final Size size;
-  final String actualprice;
-  final String offerPrice;
-  final String card;
-  final String earning;
+  
+
+  ImageAndIcons({Key? key, required this.size,required this.photourl})
+      : super(key: key);
+
+  Size size;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: size.height * 0.4, child: Center(child: Images(size: size)));
+        height: size.height * 0.6,
+        child: Center(
+            child: Images(
+          size: size,
+          photo: this.photourl,
+        )));
   }
 }

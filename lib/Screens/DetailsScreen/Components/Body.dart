@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:yerper_admin/Screens/DetailsScreen/Components/IconsandImage.dart';
+import 'package:yerper_admin/Screens/DetailsScreen/Components/Image.dart';
 import 'package:yerper_admin/constants.dart';
 
 class Body extends StatefulWidget {
@@ -12,22 +13,35 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  String actualprice = "NA";
-  String offer_price = "NA";
-  String card = "NONE";
-  String user_earning = "NA";
+  Future<void> post(String name, int actual, int offer, String card,
+      int earning, String photo, int count) async {
+    print(photo);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    int actualprice = 0;
+    int offer_price = 0;
+    String card = "NONE";
+    int user_earning = 0;
+    String description = "";
+    String? photourl = null;
+    String name = "";
+    int count = 0;
+
+    void change(String url) {
+      setState(() {
+        photourl = url;
+      });
+    }
+
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
           ImageAndIcons(
             size: size,
-            actualprice: actualprice,
-            card: card,
-            earning: user_earning,
-            offerPrice: offer_price,
+            photourl: photourl,
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width - 30,
@@ -76,7 +90,9 @@ class _BodyState extends State<Body> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               TextField(
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  name = value;
+                                },
                                 decoration: InputDecoration(
                                     labelText: "Name Of Product"),
                               ),
@@ -114,7 +130,7 @@ class _BodyState extends State<Body> {
                             children: <Widget>[
                               TextField(
                                 onChanged: (value) {
-                                  setState(() {});
+                                  actualprice = value as int;
                                 },
                                 decoration:
                                     InputDecoration(labelText: "Actual Price"),
@@ -152,7 +168,9 @@ class _BodyState extends State<Body> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               TextField(
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  offer_price = value as int;
+                                },
                                 decoration:
                                     InputDecoration(labelText: "Offer Price"),
                               ),
@@ -189,7 +207,9 @@ class _BodyState extends State<Body> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               TextField(
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  card = value;
+                                },
                                 decoration: InputDecoration(labelText: "Card"),
                               ),
                             ],
@@ -225,7 +245,9 @@ class _BodyState extends State<Body> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               TextField(
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  user_earning = value as int;
+                                },
                                 decoration:
                                     InputDecoration(labelText: "User Earning"),
                               ),
@@ -262,9 +284,51 @@ class _BodyState extends State<Body> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               TextField(
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  description = value;
+                                },
                                 decoration:
                                     InputDecoration(labelText: "Description"),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey[100],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(18))),
+                          child: Icon(
+                            Icons.description,
+                            color: Colors.lightBlue[900],
+                          ),
+                          padding: EdgeInsets.all(12),
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              TextField(
+                                onChanged: (value) {
+                                  count = value as int;
+                                },
+                                decoration:
+                                    InputDecoration(labelText: "Deal Limit"),
+                                keyboardType: TextInputType.number,
                               ),
                             ],
                           ),
@@ -289,7 +353,11 @@ class _BodyState extends State<Body> {
                 children: <Widget>[
                   Spacer(),
                   GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        // print(deal.photo);
+                        post(name, actualprice, offer_price, card, user_earning,
+                            deal.photo, count);
+                      },
                       child: Text(
                         "Post Deal",
                         style: TextStyle(
