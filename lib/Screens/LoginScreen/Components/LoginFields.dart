@@ -1,15 +1,42 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, avoid_print, unnecessary_new
 
+import 'dart:convert';
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:yerper_admin/Screens/OtpScreen/OtpScreen.dart';
+import 'package:http/http.dart' as http;
+import 'package:yerper_admin/User.dart';
 
 import '../../../constants.dart';
 
-class TextFields extends StatelessWidget {
+class TextFields extends StatefulWidget {
   const TextFields({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<TextFields> createState() => _TextFieldsState();
+}
+
+class _TextFieldsState extends State<TextFields> {
+  late String email;
+  late String password;
+
+  Map<String, String> headers = {"Content-type": "application/json"};
+  Future loginuser(String email1, String password1) async {
+    final json = jsonEncode({"email": email1, "password": password1});
+    var res = await http.post(Uri.parse("http://192.168.1.3:9090/admin/verify"),
+        headers: headers,
+        // body: JsonEncoder({})
+        body: json);
+
+    final result = jsonDecode(res.body);
+    print(result);
+    User user = User(
+        email: result["email"], id: result["id"], password: result["password"]);
+
+    print(user.email);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,29 +65,22 @@ class TextFields extends StatelessWidget {
           ),
           TextField(
             onChanged: (value) {
-              print(value);
+              email = value;
             },
             decoration: new InputDecoration(labelText: "Email"),
-            
           ),
           TextField(
             onChanged: (value) {
-              print(value);
+              password = value;
             },
             decoration: new InputDecoration(labelText: "Password"),
-            
           ), // Only numbers can be entered
 
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: GestureDetector(
               onTap: (() {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OtpScreen(),
-                  ),
-                );
+                loginuser(email, password);
               }),
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.8,
@@ -70,7 +90,7 @@ class TextFields extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20)),
                 child: Center(
                     child: Text(
-                  "Send Code",
+                  "Login",
                   style: TextStyle(color: Colors.white, fontSize: 17),
                 )),
               ),

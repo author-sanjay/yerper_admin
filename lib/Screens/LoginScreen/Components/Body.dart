@@ -20,8 +20,8 @@ class Body extends StatelessWidget {
             SvgPicture.asset(
               "assets/images/login.svg",
               fit: BoxFit.contain,
-              height: MediaQuery.of(context).size.height * 0.6,
-              width: MediaQuery.of(context).size.width * 0.6,
+              height: MediaQuery.of(context).size.height * 0.5,
+              width: MediaQuery.of(context).size.width * 0.5,
             ),
             TextFields(),
           ],
