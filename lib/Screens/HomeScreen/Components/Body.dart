@@ -62,7 +62,7 @@ class _BodyState extends State<Body> {
                                 builder: (context) => DetailsScreen(),
                               ),
                             );
-                          },
+                          }, actual: i.actual, desc: i.desc, offer: i.offer,
                         ),
                     ],
                   )

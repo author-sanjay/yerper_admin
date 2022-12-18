@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, unnecessary_string_interpolations, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:yerper_admin/Screens/Add%20a%20new%20Deal/AddDeal.dart';
 
 import '../../../constants.dart';
 
@@ -12,7 +13,10 @@ class ItemCard extends StatelessWidget {
       required this.profit,
       required this.site,
       required this.image,
-      required this.press})
+      required this.press,
+      required this.desc,
+      required this.actual,
+      required this.offer})
       : super(key: key);
 
   final String itemname;
@@ -21,13 +25,27 @@ class ItemCard extends StatelessWidget {
   final String site;
   final String image;
   final Function press;
+  final int actual;
+  final int offer;
+  final String desc;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return GestureDetector(
       onTap: () {
-        // Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsScreen(),),);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Details(
+                actualprice: actual,
+                card: cardname,
+                earning: profit.toInt(),
+                offer: offer,
+                desc: desc,
+                photo: image),
+          ),
+        );
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -37,12 +55,10 @@ class ItemCard extends StatelessWidget {
         width: size.width * 0.4,
         child: Column(
           children: <Widget>[
-            Container(
-              height: size.height*0.25,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: NetworkImage(image),fit: BoxFit.cover)
-              ),
-              // child: Image.network(image)),
+            Image.network(
+              image,
+              fit: BoxFit.cover,
+              height: size.height * 0.25,
             ),
             Container(
               padding: EdgeInsets.all(kDefaultPadding / 2),
@@ -86,7 +102,6 @@ class ItemCard extends StatelessWidget {
                                 "Offer Left",
                                 style: TextStyle(color: Colors.green),
                               ),
-                              
                             ],
                           ),
                         ),
