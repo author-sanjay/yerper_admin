@@ -1,9 +1,16 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, non_constant_identifier_names, prefer_interpolation_to_compose_strings
+
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:yerper_admin/Screens/DetailsScreen/Components/IconsandImage.dart';
 import 'package:yerper_admin/Screens/DetailsScreen/Components/Image.dart';
+import 'package:yerper_admin/api.dart';
 import 'package:yerper_admin/constants.dart';
+import 'package:http/http.dart' as http;
+
+import '../../HomeScreen/HomeScreen.dart';
+import '../../LoginScreen/LoginScreen.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -13,9 +20,39 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  Map<String, String> headers = {"Content-type": "application/json"};
   Future<void> post(String name, int actual, int offer, String card,
-      int earning, String photo, int count) async {
-    print(photo);
+      int earning, String photo, int count, String description) async {
+    final json = jsonEncode({
+      "product_name": name,
+      "description": description,
+      "actual_price": actual,
+      "offer_price": offer,
+      "card": card,
+      "user_earning": earning,
+      "photourl": photo,
+      "countleft": count,
+      "active": true
+    });
+
+    var res = await http.post(Uri.parse(api + "/deals/add"),
+        headers: headers, body: json);
+    try {
+      final result = jsonDecode(res.body);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
+      );
+    } catch (_) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+      );
+    }
   }
 
   @override
@@ -129,8 +166,9 @@ class _BodyState extends State<Body> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               TextField(
+                                keyboardType: TextInputType.number,
                                 onChanged: (value) {
-                                  actualprice = value as int;
+                                  actualprice = int.parse(value);
                                 },
                                 decoration:
                                     InputDecoration(labelText: "Actual Price"),
@@ -168,8 +206,9 @@ class _BodyState extends State<Body> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               TextField(
+                                keyboardType: TextInputType.number,
                                 onChanged: (value) {
-                                  offer_price = value as int;
+                                  offer_price = int.parse(value);
                                 },
                                 decoration:
                                     InputDecoration(labelText: "Offer Price"),
@@ -245,8 +284,9 @@ class _BodyState extends State<Body> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               TextField(
+                                keyboardType: TextInputType.number,
                                 onChanged: (value) {
-                                  user_earning = value as int;
+                                  user_earning = int.parse(value);
                                 },
                                 decoration:
                                     InputDecoration(labelText: "User Earning"),
@@ -324,7 +364,7 @@ class _BodyState extends State<Body> {
                             children: <Widget>[
                               TextField(
                                 onChanged: (value) {
-                                  count = value as int;
+                                  count = int.parse(value);
                                 },
                                 decoration:
                                     InputDecoration(labelText: "Deal Limit"),
@@ -356,7 +396,7 @@ class _BodyState extends State<Body> {
                       onTap: () {
                         // print(deal.photo);
                         post(name, actualprice, offer_price, card, user_earning,
-                            deal.photo, count);
+                            deal.photo, count, description);
                       },
                       child: Text(
                         "Post Deal",

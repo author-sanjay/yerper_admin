@@ -1,1 +1,1 @@
-const api = "localhost:9090/verify/";
+const api = "http://192.168.1.3:9090";
