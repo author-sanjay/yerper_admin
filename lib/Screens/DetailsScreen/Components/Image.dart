@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, file_names
+// ignore_for_file: prefer_const_constructors, file_names, duplicate_import, unused_import, must_be_immutable, use_build_context_synchronously, avoid_returning_null_for_void, avoid_print, duplicate_ignore
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, non_constant_identifier_names, prefer_interpolation_to_compose_strings
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, non_constant_identifier_names, prefer_interpolation_to_compose_strings, unused_local_variable, use_build_context_synchronously, avoid_init_to_null, unused_element, sort_child_properties_last, avoid_unnecessary_containers
 
 import 'dart:convert';
 
