@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yerper_admin/Screens/Add%20a%20new%20Deal/AddDeal.dart';
+import 'package:yerper_admin/Screens/DetailsScreen/DetailsSceen.dart';
 import 'package:yerper_admin/Screens/HomeScreen/Components/Body.dart';
 
 import '../../constants.dart';
@@ -40,7 +41,7 @@ class BottomBar extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddDeal(),
+                      builder: (context) => DetailsScreen(),
                     ),
                   );
                 }, icon: Icon(Icons.add)),
@@ -48,7 +49,7 @@ class BottomBar extends StatelessWidget {
                       Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddDeal(),
+                      builder: (context) => DetailsScreen(),
                     ),
                   );
                     },child: Text("Add a new Deal",style: TextStyle(fontSize: 17),))

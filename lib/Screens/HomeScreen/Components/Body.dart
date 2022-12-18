@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:yerper_admin/Screens/DetailsScreen/DetailsSceen.dart';
 import 'package:yerper_admin/modal/GetDeals.dart';
 import 'package:yerper_admin/modal/GetDealsapi.dart';
 import 'HeaderWithSearchbar.dart';
@@ -41,21 +42,30 @@ class _BodyState extends State<Body> {
           children: <Widget>[
             HeaderWithSearchbar(size: size),
             TitleWithButton(),
-            _isloading?Center(child: CircularProgressIndicator(),):
-
-            Wrap(
-              
-              children: [
-                 for (var i in _getdeals) ItemCard(cardname: i.card,
-                  itemname: i.name,
-                  profit: i.earning.toDouble(),
-                  site: 'Flipkart',
-                  image: i.images,
-                  press: () {},
-                ),
-                
-              ],
-            )
+            _isloading
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Wrap(
+                    children: [
+                      for (var i in _getdeals)
+                        ItemCard(
+                          cardname: i.card,
+                          itemname: i.name,
+                          profit: i.earning.toDouble(),
+                          site: 'Flipkart',
+                          image: i.images,
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailsScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                    ],
+                  )
           ],
         ),
       ),
