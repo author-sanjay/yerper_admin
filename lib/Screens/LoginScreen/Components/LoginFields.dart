@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
 import 'package:yerper_admin/Screens/LoginScreen/LoginScreen.dart';
 import 'package:yerper_admin/User.dart';
+import 'package:yerper_admin/api.dart';
 
 import '../../../constants.dart';
 
@@ -27,7 +28,7 @@ class _TextFieldsState extends State<TextFields> {
   Map<String, String> headers = {"Content-type": "application/json"};
   Future loginuser(String email1, String password1) async {
     final json = jsonEncode({"email": email1, "password": password1});
-    var res = await http.post(Uri.parse("http://192.168.1.3:9090/admin/verify"),
+    var res = await http.post(Uri.parse(api+"/admin/verify"),
         headers: headers,
         // body: JsonEncoder({})
         body: json);
