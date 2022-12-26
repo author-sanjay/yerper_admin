@@ -31,6 +31,6 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         // ignore: prefer_const_constructors
-        home: LoginScreen());
+        home: HomeScreen());
   }
 }

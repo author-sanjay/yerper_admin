@@ -77,17 +77,19 @@ class ItemCard extends StatelessWidget {
                 children: [
                   Row(
                     children: <Widget>[
-                      RichText(
-                          text: TextSpan(children: [
-                        TextSpan(
-                            text: "$itemname\n".toUpperCase(),
-                            style: Theme.of(context).textTheme.button),
-                        TextSpan(
-                            text: "$cardname\n".toUpperCase(),
-                            style: TextStyle(
-                              color: kprimarycolor.withOpacity(0.9),
-                            ))
-                      ]))
+                      Flexible(
+                        child: RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              text: "$itemname\n".toUpperCase(),
+                              style: Theme.of(context).textTheme.button),
+                          TextSpan(
+                              text: "$cardname\n".toUpperCase(),
+                              style: TextStyle(
+                                color: kprimarycolor.withOpacity(0.9),
+                              ))
+                        ])),
+                      )
                     ],
                   ),
                   Container(

@@ -21,10 +21,20 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   Map<String, String> headers = {"Content-type": "application/json"};
-  Future<void> post(String name, int actual, int offer, String card,
-      int earning, String photo, int count, String description) async {
+  Future<void> post(
+      String name,
+      int actual,
+      int offer,
+      String card,
+      int earning,
+      String photo,
+      int count,
+      String description,
+      String link,
+      String platform) async {
     final json = jsonEncode({
       "product_name": name,
+      "name": name,
       "description": description,
       "actual_price": actual,
       "offer_price": offer,
@@ -32,7 +42,10 @@ class _BodyState extends State<Body> {
       "user_earning": earning,
       "photourl": photo,
       "countleft": count,
-      "active": true
+      "active": true,
+      "offerlink": link,
+      "offerplatform": platform,
+      "platform": platform
     });
 
     var res = await http.post(Uri.parse(api + "/deals/add"),
@@ -66,7 +79,8 @@ class _BodyState extends State<Body> {
     String? photourl = null;
     String name = "";
     int count = 0;
-
+    String link = "";
+    String platform = "";
     void change(String url) {
       setState(() {
         photourl = url;
@@ -376,6 +390,86 @@ class _BodyState extends State<Body> {
                       ],
                     ),
                   ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey[100],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(18))),
+                          child: Icon(
+                            Icons.link,
+                            color: Colors.lightBlue[900],
+                          ),
+                          padding: EdgeInsets.all(12),
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              TextField(
+                                onChanged: (value) {
+                                  link = value;
+                                },
+                                decoration:
+                                    InputDecoration(labelText: "Offer Link"),
+                                keyboardType: TextInputType.number,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey[100],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(18))),
+                          child: Icon(
+                            Icons.shopping_cart,
+                            color: Colors.lightBlue[900],
+                          ),
+                          padding: EdgeInsets.all(12),
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              TextField(
+                                onChanged: (value) {
+                                  platform = value;
+                                },
+                                decoration:
+                                    InputDecoration(labelText: "Platform"),
+                                
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -396,7 +490,7 @@ class _BodyState extends State<Body> {
                       onTap: () {
                         // print(deal.photo);
                         post(name, actualprice, offer_price, card, user_earning,
-                            deal.photo, count, description);
+                            deal.photo, count, description, link, platform);
                       },
                       child: Text(
                         "Post Deal",
