@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:yerper_admin/Screens/Add%20a%20new%20Deal/Components/IconsandImage.dart';

@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, file_names, prefer_interpolation_to_compose_strings, no_leading_underscores_for_local_identifiers
 
 import 'dart:convert';
 
