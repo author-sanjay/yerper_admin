@@ -3,7 +3,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yerper_admin/Screens/Add%20Card/AddCard.dart';
 import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
+import 'package:yerper_admin/Screens/LoginScreen/LoginScreen.dart';
 import 'package:yerper_admin/User.dart';
 import 'package:yerper_admin/constants.dart';
 
@@ -30,6 +32,6 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         // ignore: prefer_const_constructors
-        home: HomeScreen());
+        home: AddCard());
   }
 }

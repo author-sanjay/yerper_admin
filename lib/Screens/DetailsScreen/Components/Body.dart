@@ -462,7 +462,6 @@ class _BodyState extends State<Body> {
                                 },
                                 decoration:
                                     InputDecoration(labelText: "Platform"),
-                                
                               ),
                             ],
                           ),
