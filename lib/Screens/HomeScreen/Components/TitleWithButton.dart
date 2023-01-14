@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
+
 class TitleWithButton extends StatelessWidget {
   const TitleWithButton({
     Key? key,
@@ -15,7 +16,6 @@ class TitleWithButton extends StatelessWidget {
       child: Row(
         children: <Widget>[
           TextWithCustomUnderline(text: "Deals"),
-          
         ],
       ),
     );

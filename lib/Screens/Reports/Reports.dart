@@ -22,6 +22,7 @@ class _ReportsState extends State<Reports> {
   late int earning;
   late int deals;
   late int activedeals;
+  late int balance;
 
   @override
   void initState() {
@@ -40,16 +41,20 @@ class _ReportsState extends State<Reports> {
     // print(result);
     var res3 =
         await http.get(Uri.parse(api + '/admin/dealsactive'), headers: headers);
-    var result3 = jsonDecode(res2.body);
+    var result3 = jsonDecode(res3.body);
     var res4 = await http.get(Uri.parse(api + '/admin/dealscomplete'),
         headers: headers);
-    var result4 = jsonDecode(res2.body);
+    var result4 = jsonDecode(res4.body);
+    var res5 =
+        await http.get(Uri.parse(api + '/admin/balance'), headers: headers);
+    var result5 = jsonDecode(res5.body);
     setState(() {
       loading = false;
       total = result;
       active = result2;
       activedeals = result3;
       deals = result4;
+      balance = result5;
     });
   }
 
@@ -75,6 +80,7 @@ class _ReportsState extends State<Reports> {
               active: active,
               active_deals: activedeals,
               deals: deals,
+              balance: balance,
             ),
     );
   }
@@ -86,13 +92,15 @@ class bodyy extends StatelessWidget {
       required this.total,
       required this.active,
       required this.active_deals,
-      required this.deals})
+      required this.deals,
+      required this.balance})
       : super(key: key);
 
   int total;
   int active;
   int deals;
   int active_deals;
+  int balance;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -229,7 +237,7 @@ class bodyy extends StatelessWidget {
                             "Earning",
                             style: TextStyle(fontSize: 15, color: Colors.black),
                           ),
-                          Text("7656",
+                          Text("$balance",
                               style:
                                   TextStyle(fontSize: 45, color: Colors.black))
                         ],

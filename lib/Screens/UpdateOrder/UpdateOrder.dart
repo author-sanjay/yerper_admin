@@ -4,32 +4,19 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
 import 'package:yerper_admin/constants.dart';
 
-class UpdateOrder extends StatelessWidget {
+class UpdateOrder extends StatefulWidget {
   const UpdateOrder({super.key});
 
   @override
+  State<UpdateOrder> createState() => _UpdateOrderState();
+}
+
+class _UpdateOrderState extends State<UpdateOrder> {
+  bool got=false;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: boddy(),
-    );
-  }
-}
-
-class boddy extends StatefulWidget {
-  const boddy({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<boddy> createState() => _boddyState();
-}
-
-class _boddyState extends State<boddy> {
-  bool got = false;
-  
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
+      body:  SafeArea(
       child: got == false
           ? Center(
               child: Container(
@@ -87,7 +74,8 @@ class _boddyState extends State<boddy> {
                         width: MediaQuery.of(context).size.width * 0.6,
                         height: 40,
                         // height: MediaQuery.of(context).size.height * 0.05,
-                        decoration: BoxDecoration(color: kprimarycolor,
+                        decoration: BoxDecoration(
+                            color: kprimarycolor,
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
@@ -108,6 +96,7 @@ class _boddyState extends State<boddy> {
               decoration: BoxDecoration(color: Colors.white),
               child: Text("got"),
             ),
+      )
     );
   }
 }
