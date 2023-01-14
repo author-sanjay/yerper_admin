@@ -131,7 +131,12 @@ class _CardBodyState extends State<CardBody> {
                               )),
                             ),
                           ))
-                      : Image.network(photo!)),
+                      : Container(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          height: MediaQuery.of(context).size.height * 0.3,
+                          child: Image.network(
+                            photo!,
+                          ))),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.06,
               ),
@@ -182,6 +187,7 @@ class _CardBodyState extends State<CardBody> {
               ),
               ElevatedButton(
                 onPressed: () {
+                  // print(name);
                   uploadcard(name, photo.toString());
                 },
                 child: Text("Upload Card"),

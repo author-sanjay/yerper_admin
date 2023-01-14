@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:yerper_admin/Screens/Add%20Card/AddCard.dart';
 import 'package:yerper_admin/Screens/Add%20a%20new%20Deal/AddDeal.dart';
 import 'package:yerper_admin/Screens/DetailsScreen/DetailsSceen.dart';
 import 'package:yerper_admin/Screens/HomeScreen/Components/Body.dart';
+import 'package:yerper_admin/Screens/Reports/Reports.dart';
 
 import '../../constants.dart';
 
@@ -113,7 +115,7 @@ class drawer extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => AddCard(),),);},
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 32),
                         padding: EdgeInsets.all(16),
@@ -155,7 +157,7 @@ class drawer extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => Reports(),),);},
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 32),
                         padding: EdgeInsets.all(16),
@@ -314,7 +316,7 @@ class drawer extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    "Add Admin",
+                                    "Admins",
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w300),
