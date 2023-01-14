@@ -1,10 +1,57 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:yerper_admin/constants.dart';
+import 'package:http/http.dart' as http;
 
-class Reports extends StatelessWidget {
+import '../../api.dart';
+
+class Reports extends StatefulWidget {
   const Reports({super.key});
+
+  @override
+  State<Reports> createState() => _ReportsState();
+}
+
+class _ReportsState extends State<Reports> {
+  bool loading = true;
+  late int total;
+  late int active;
+  late int earning;
+  late int deals;
+  late int activedeals;
+
+  @override
+  void initState() {
+    super.initState();
+    getreports();
+  }
+
+  Future<void> getreports() async {
+    Map<String, String> headers = {"Content-type": "application/json"};
+    var res = await http.get(Uri.parse(api + '/admin/total'), headers: headers);
+    var result = jsonDecode(res.body);
+    // print(result);
+    var res2 =
+        await http.get(Uri.parse(api + '/admin/active'), headers: headers);
+    var result2 = jsonDecode(res2.body);
+    // print(result);
+    var res3 =
+        await http.get(Uri.parse(api + '/admin/dealsactive'), headers: headers);
+    var result3 = jsonDecode(res2.body);
+    var res4 = await http.get(Uri.parse(api + '/admin/dealscomplete'),
+        headers: headers);
+    var result4 = jsonDecode(res2.body);
+    setState(() {
+      loading = false;
+      total = result;
+      active = result2;
+      activedeals = result3;
+      deals = result4;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +66,33 @@ class Reports extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
       ),
-      body: bodyy(),
+      body: loading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : bodyy(
+              total: total,
+              active: active,
+              active_deals: activedeals,
+              deals: deals,
+            ),
     );
   }
 }
 
 class bodyy extends StatelessWidget {
-  const bodyy({
-    Key? key,
-  }) : super(key: key);
+  bodyy(
+      {Key? key,
+      required this.total,
+      required this.active,
+      required this.active_deals,
+      required this.deals})
+      : super(key: key);
 
+  int total;
+  int active;
+  int deals;
+  int active_deals;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -68,7 +132,7 @@ class bodyy extends StatelessWidget {
                       style: TextStyle(fontSize: 15),
                     ),
                     Text(
-                      "56",
+                      "$total",
                       style: TextStyle(
                         fontSize: 40,
                       ),
@@ -120,7 +184,7 @@ class bodyy extends StatelessWidget {
                             "Active Users ",
                             style: TextStyle(fontSize: 15, color: Colors.black),
                           ),
-                          Text("7656",
+                          Text("$active",
                               style:
                                   TextStyle(fontSize: 40, color: Colors.black))
                         ],
@@ -209,7 +273,7 @@ class bodyy extends StatelessWidget {
                             "Active Deals",
                             style: TextStyle(fontSize: 15, color: Colors.black),
                           ),
-                          Text("7656",
+                          Text("$active_deals",
                               style:
                                   TextStyle(fontSize: 45, color: Colors.black))
                         ],
@@ -250,7 +314,7 @@ class bodyy extends StatelessWidget {
                             "Completed Deals",
                             style: TextStyle(fontSize: 15, color: Colors.black),
                           ),
-                          Text("7656",
+                          Text("$deals",
                               style:
                                   TextStyle(fontSize: 45, color: Colors.black))
                         ],

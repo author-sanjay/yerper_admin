@@ -7,6 +7,7 @@ import 'package:yerper_admin/Screens/Add%20a%20new%20Deal/AddDeal.dart';
 import 'package:yerper_admin/Screens/DetailsScreen/DetailsSceen.dart';
 import 'package:yerper_admin/Screens/HomeScreen/Components/Body.dart';
 import 'package:yerper_admin/Screens/Reports/Reports.dart';
+import 'package:yerper_admin/Screens/UpdateOrder/UpdateOrder.dart';
 
 import '../../constants.dart';
 
@@ -198,52 +199,9 @@ class drawer extends StatelessWidget {
                         ),
                       ),
                     ),
+                  
                     GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 32),
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(18))),
-                              child: Icon(
-                                Icons.help,
-                                color: Color.fromARGB(255, 0, 0, 0),
-                              ),
-                              padding: EdgeInsets.all(12),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    "Tickets",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w300),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-
-                     ,
-                    GestureDetector(
-                      onTap: () {},
+                      onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => UpdateOrder(),),);},
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 32),
                         padding: EdgeInsets.all(16),
