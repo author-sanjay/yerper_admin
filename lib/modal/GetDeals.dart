@@ -1,7 +1,7 @@
 // ignore_for_file: empty_constructor_bodies, override_on_non_overriding_member, file_names
 
-
 class GetDeals {
+  int id;
   String name;
   String desc;
   int actual;
@@ -11,7 +11,7 @@ class GetDeals {
   int earning;
   String images;
 
-  GetDeals(this.actual, this.card, this.count, this.desc, this.earning,
+  GetDeals(this.id, this.actual, this.card, this.count, this.desc, this.earning,
       this.images, this.name, this.offer);
 
   GetDeals.fromJson(Map<dynamic, dynamic> json)
@@ -22,7 +22,8 @@ class GetDeals {
         earning = json["user_earning"] as int,
         images = json["photourl"] as String,
         name = json["product_name"] as String,
-        offer = json["offer_price"] as int;
+        offer = json["offer_price"] as int,
+        id = json["id"] as int;
 
   static List<GetDeals> dealsfromapi(List api) {
     return api.map((e) {

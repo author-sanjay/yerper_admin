@@ -16,9 +16,10 @@ class ItemCard extends StatelessWidget {
       required this.press,
       required this.desc,
       required this.actual,
-      required this.offer})
+      required this.offer,
+      required this.id})
       : super(key: key);
-
+  final int id;
   final String itemname;
   final String cardname;
   final double profit;
@@ -125,6 +126,7 @@ class ItemCard extends StatelessWidget {
           ],
         ),
       ),
+   
     );
   }
 }

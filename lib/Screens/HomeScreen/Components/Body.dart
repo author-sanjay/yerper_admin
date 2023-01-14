@@ -50,6 +50,7 @@ class _BodyState extends State<Body> {
                     children: [
                       for (var i in _getdeals)
                         ItemCard(
+                          id: i.id,
                           cardname: i.card,
                           itemname: i.name,
                           profit: i.earning.toDouble(),
@@ -62,7 +63,10 @@ class _BodyState extends State<Body> {
                                 builder: (context) => DetailsScreen(),
                               ),
                             );
-                          }, actual: i.actual, desc: i.desc, offer: i.offer,
+                          },
+                          actual: i.actual,
+                          desc: i.desc,
+                          offer: i.offer,
                         ),
                     ],
                   )

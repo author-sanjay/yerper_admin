@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:yerper_admin/Screens/UpdateOrder/DealUpdate.dart';
+import 'package:yerper_admin/Screens/UpdateOrder/OrderUpdate.dart';
 import 'package:yerper_admin/constants.dart';
 
 class UpdateOrder extends StatefulWidget {
@@ -11,11 +13,11 @@ class UpdateOrder extends StatefulWidget {
 }
 
 class _UpdateOrderState extends State<UpdateOrder> {
-  bool got=false;
+  bool got = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:  SafeArea(
+        body: SafeArea(
       child: got == false
           ? Center(
               child: Container(
@@ -41,7 +43,12 @@ class _UpdateOrderState extends State<UpdateOrder> {
                     ),
                     GestureDetector(
                       onTap: (() {
-                        // Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(),),);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DealUpdate(),
+                          ),
+                        );
                       }),
                       child: Container(
                         padding: const EdgeInsets.all(10.0),
@@ -66,7 +73,12 @@ class _UpdateOrderState extends State<UpdateOrder> {
                     ),
                     GestureDetector(
                       onTap: (() {
-                        // Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(),),);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderUpdate(),
+                          ),
+                        );
                       }),
                       child: Container(
                         padding: const EdgeInsets.all(10.0),
@@ -78,9 +90,11 @@ class _UpdateOrderState extends State<UpdateOrder> {
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
-                        child: const Text(
-                          "Update Perticular Order",
-                          style: TextStyle(fontSize: 15, color: Colors.white),
+                        child: Center(
+                          child: const Text(
+                            "Update Perticular Order",
+                            style: TextStyle(fontSize: 15, color: Colors.white),
+                          ),
                         ),
                       ),
                     )
@@ -95,7 +109,6 @@ class _UpdateOrderState extends State<UpdateOrder> {
               decoration: const BoxDecoration(color: Colors.white),
               child: const Text("got"),
             ),
-      )
-    );
+    ));
   }
 }
