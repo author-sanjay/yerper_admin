@@ -1,7 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
 import 'package:yerper_admin/constants.dart';
 
 class UpdateOrder extends StatefulWidget {
@@ -20,20 +19,20 @@ class _UpdateOrderState extends State<UpdateOrder> {
       child: got == false
           ? Center(
               child: Container(
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
-                decoration: BoxDecoration(color: Colors.white),
+                decoration: const BoxDecoration(color: Colors.white),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(10.0),
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.1,
-                      decoration: BoxDecoration(color: Colors.white),
-                      child: Center(
+                      decoration: const BoxDecoration(color: Colors.white),
+                      child: const Center(
                           child: Text(
                         "Select One",
                         style: TextStyle(
@@ -45,16 +44,16 @@ class _UpdateOrderState extends State<UpdateOrder> {
                         // Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(),),);
                       }),
                       child: Container(
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
                         width: MediaQuery.of(context).size.width * 0.6,
                         height: 40,
                         // height: MediaQuery.of(context).size.height * 0.05,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: kprimarycolor,
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "Update Deal Status",
                             style: TextStyle(fontSize: 15, color: Colors.white),
@@ -62,7 +61,7 @@ class _UpdateOrderState extends State<UpdateOrder> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     GestureDetector(
@@ -70,16 +69,16 @@ class _UpdateOrderState extends State<UpdateOrder> {
                         // Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(),),);
                       }),
                       child: Container(
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
                         width: MediaQuery.of(context).size.width * 0.6,
                         height: 40,
                         // height: MediaQuery.of(context).size.height * 0.05,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: kprimarycolor,
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
-                        child: Text(
+                        child: const Text(
                           "Update Perticular Order",
                           style: TextStyle(fontSize: 15, color: Colors.white),
                         ),
@@ -90,11 +89,11 @@ class _UpdateOrderState extends State<UpdateOrder> {
               ),
             )
           : Container(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(color: Colors.white),
-              child: Text("got"),
+              decoration: const BoxDecoration(color: Colors.white),
+              child: const Text("got"),
             ),
       )
     );

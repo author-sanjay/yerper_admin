@@ -1,7 +1,8 @@
+// ignore_for_file: file_names, prefer_interpolation_to_compose_strings, unused_local_variable, prefer_const_constructors, use_build_context_synchronously, avoid_returning_null_for_void, avoid_print, sort_child_properties_last, duplicate_ignore
+
 import 'dart:convert';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:yerper_admin/constants.dart';
@@ -31,7 +32,6 @@ class _CardBodyState extends State<CardBody> {
         headers: headers, body: json);
 
     try {
-      final result = jsonDecode(res.body);
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -131,7 +131,7 @@ class _CardBodyState extends State<CardBody> {
                               )),
                             ),
                           ))
-                      : Container(
+                      : SizedBox(
                           width: MediaQuery.of(context).size.width * 0.9,
                           height: MediaQuery.of(context).size.height * 0.3,
                           child: Image.network(

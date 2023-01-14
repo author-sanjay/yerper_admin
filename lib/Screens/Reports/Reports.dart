@@ -1,8 +1,8 @@
+// ignore_for_file: file_names, unused_import, prefer_const_constructors, must_be_immutable, camel_case_types, non_constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:yerper_admin/constants.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,21 +32,21 @@ class _ReportsState extends State<Reports> {
 
   Future<void> getreports() async {
     Map<String, String> headers = {"Content-type": "application/json"};
-    var res = await http.get(Uri.parse(api + '/admin/total'), headers: headers);
+    var res = await http.get(Uri.parse('$api/admin/total'), headers: headers);
     var result = jsonDecode(res.body);
     // print(result);
     var res2 =
-        await http.get(Uri.parse(api + '/admin/active'), headers: headers);
+        await http.get(Uri.parse('$api/admin/active'), headers: headers);
     var result2 = jsonDecode(res2.body);
     // print(result);
     var res3 =
-        await http.get(Uri.parse(api + '/admin/dealsactive'), headers: headers);
+        await http.get(Uri.parse('$api/admin/dealsactive'), headers: headers);
     var result3 = jsonDecode(res3.body);
-    var res4 = await http.get(Uri.parse(api + '/admin/dealscomplete'),
+    var res4 = await http.get(Uri.parse('$api/admin/dealscomplete'),
         headers: headers);
     var result4 = jsonDecode(res4.body);
     var res5 =
-        await http.get(Uri.parse(api + '/admin/balance'), headers: headers);
+        await http.get(Uri.parse('$api/admin/balance'), headers: headers);
     var result5 = jsonDecode(res5.body);
     setState(() {
       loading = false;
@@ -118,10 +118,10 @@ class bodyy extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(10),
                       bottomLeft: Radius.circular(50)),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color.fromARGB(255, 108, 106, 106),
-                      offset: const Offset(
+                      offset: Offset(
                         -1.0,
                         1.0,
                       ),
@@ -166,17 +166,17 @@ class bodyy extends StatelessWidget {
                       // height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0xffb1e6fe), Color(0xffd47fe3)],
+                            colors: const [Color(0xffb1e6fe), Color(0xffd47fe3)],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(10),
                               bottomLeft: Radius.circular(10)),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Color.fromARGB(255, 108, 106, 106),
-                              offset: const Offset(
+                              offset: Offset(
                                 -1.0,
                                 1.0,
                               ),
@@ -208,7 +208,7 @@ class bodyy extends StatelessWidget {
                       // height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [
+                            colors: const [
                               Color(0xfff1709c),
                               Color.fromARGB(255, 182, 128, 128)
                             ],
@@ -218,10 +218,10 @@ class bodyy extends StatelessWidget {
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(10),
                               bottomLeft: Radius.circular(10)),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Color.fromARGB(255, 108, 106, 106),
-                              offset: const Offset(
+                              offset: Offset(
                                 -1.0,
                                 1.0,
                               ),
@@ -252,7 +252,7 @@ class bodyy extends StatelessWidget {
                       // height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [
+                            colors: const [
                               Color.fromARGB(255, 162, 228, 234),
                               Color(0xff16b5fc)
                             ],
@@ -262,10 +262,10 @@ class bodyy extends StatelessWidget {
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(10),
                               bottomLeft: Radius.circular(10)),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Color.fromARGB(255, 108, 106, 106),
-                              offset: const Offset(
+                              offset: Offset(
                                 -1.0,
                                 1.0,
                               ),
@@ -296,17 +296,17 @@ class bodyy extends StatelessWidget {
                       // height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0xffff8862), Color(0xffb69184)],
+                            colors: const [Color(0xffff8862), Color(0xffb69184)],
                             begin: Alignment.bottomRight,
                             end: Alignment.topLeft,
                           ),
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(10),
                               bottomLeft: Radius.circular(10)),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Color.fromARGB(255, 108, 106, 106),
-                              offset: const Offset(
+                              offset: Offset(
                                 -1.0,
                                 1.0,
                               ),
@@ -332,7 +332,7 @@ class bodyy extends StatelessWidget {
                   padding: const EdgeInsets.all(18.0),
                   child: Center(
                       child: Column(
-                    children: [
+                    children: const [
                       Text(
                         "NOTE:",
                         style: TextStyle(fontSize: 20),

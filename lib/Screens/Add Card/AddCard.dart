@@ -1,6 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:yerper_admin/Screens/Add%20Card/Addcardbody.dart';
 
 class AddCard extends StatelessWidget {
@@ -8,7 +8,7 @@ class AddCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: CardBody(),
     );
   }
