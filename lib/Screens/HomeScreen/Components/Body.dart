@@ -38,7 +38,7 @@ class _BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: SafeArea(
-        child: Column(
+        child: _isloading?Center(child: CircularProgressIndicator(),): Column(
           children: <Widget>[
             HeaderWithSearchbar(size: size),
             TitleWithButton(),

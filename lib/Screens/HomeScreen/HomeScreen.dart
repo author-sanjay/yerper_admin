@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yerper_admin/Screens/Add%20Card/AddCard.dart';
 import 'package:yerper_admin/Screens/Add%20a%20new%20Deal/AddDeal.dart';
+import 'package:yerper_admin/Screens/AddAdmin/Addadmin.dart';
 import 'package:yerper_admin/Screens/DetailsScreen/DetailsSceen.dart';
 import 'package:yerper_admin/Screens/HomeScreen/Components/Body.dart';
 import 'package:yerper_admin/Screens/Reports/Reports.dart';
@@ -38,7 +39,6 @@ class drawer extends StatelessWidget {
     return SingleChildScrollView(
         child: Container(
             width: MediaQuery.of(context).size.width * 0.7,
-            
             height: MediaQuery.of(context).size.height,
             color: Colors.white,
             child: SafeArea(
@@ -68,7 +68,7 @@ class drawer extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                         Navigator.push(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => DetailsScreen(),
@@ -116,7 +116,14 @@ class drawer extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => AddCard(),),);},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddCard(),
+                          ),
+                        );
+                      },
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 32),
                         padding: EdgeInsets.all(16),
@@ -158,7 +165,14 @@ class drawer extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => Reports(),),);},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Reports(),
+                          ),
+                        );
+                      },
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 32),
                         padding: EdgeInsets.all(16),
@@ -199,9 +213,15 @@ class drawer extends StatelessWidget {
                         ),
                       ),
                     ),
-                  
                     GestureDetector(
-                      onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => UpdateOrder(),),);},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UpdateOrder(),
+                          ),
+                        );
+                      },
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 32),
                         padding: EdgeInsets.all(16),
@@ -242,10 +262,15 @@ class drawer extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    
-                       GestureDetector(
-                      onTap: () {},
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Addadmin(),
+                          ),
+                        );
+                      },
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 32),
                         padding: EdgeInsets.all(16),
@@ -286,8 +311,6 @@ class drawer extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    
                   ],
                 ),
               ),

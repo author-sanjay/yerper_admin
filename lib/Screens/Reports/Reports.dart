@@ -237,9 +237,11 @@ class bodyy extends StatelessWidget {
                             "Earning",
                             style: TextStyle(fontSize: 15, color: Colors.black),
                           ),
-                          Text("$balance",
-                              style:
-                                  TextStyle(fontSize: 45, color: Colors.black))
+                          Flexible(
+                            child: Text("$balance",
+                                style:
+                                    TextStyle(fontSize: 30, color: Colors.black)),
+                          )
                         ],
                       )),
                 ),

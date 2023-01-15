@@ -71,16 +71,16 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    int actualprice = 0;
-    int offer_price = 0;
-    String card = "NONE";
-    int user_earning = 0;
-    String description = "";
+    int? actualprice = null;
+    int? offer_price = null;
+    String? card = null;
+    int? user_earning = null;
+    String? description = null;
     String? photourl = null;
-    String name = "";
-    int count = 0;
-    String link = "";
-    String platform = "";
+    String? name = null;
+    int? count = null;
+    String? link = null;
+    String? platform = null;
     void change(String url) {
       setState(() {
         photourl = url;
@@ -422,7 +422,6 @@ class _BodyState extends State<Body> {
                                 },
                                 decoration:
                                     InputDecoration(labelText: "Offer Link"),
-                                keyboardType: TextInputType.number,
                               ),
                             ],
                           ),
@@ -488,8 +487,33 @@ class _BodyState extends State<Body> {
                   GestureDetector(
                       onTap: () {
                         // print(deal.photo);
-                        post(name, actualprice, offer_price, card, user_earning,
-                            deal.photo, count, description, link, platform);
+                        if (name == null ||
+                            actualprice == null ||
+                            offer_price == null ||
+                            card == null ||
+                            user_earning == null ||
+                            deal.photo == null ||
+                            count == null ||
+                            description == null ||
+                            link == null ||
+                            platform == null) {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Please Fill All the details"),
+                          ));
+                        } else {
+                          post(
+                              name.toString(),
+                              actualprice!,
+                              offer_price!,
+                              card.toString(),
+                              user_earning!,
+                              deal.photo,
+                              count!,
+                              description.toString(),
+                              link.toString(),
+                              platform.toString());
+                        }
                       },
                       child: Text(
                         "Post Deal",

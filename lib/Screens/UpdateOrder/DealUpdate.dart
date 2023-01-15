@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
 import 'package:yerper_admin/constants.dart';
 import 'package:yerper_admin/modal/GetDeals.dart';
 import 'package:yerper_admin/modal/GetDealsapi.dart';
@@ -170,13 +171,16 @@ class _cardState extends State<card> {
             TextButton(
               child: const Text('OK'),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(),),);
               },
             ),
           ],
         ),
       ),
     );
+    setState(() {
+      
+    });
   }
 
   Future<void> delete(int id) async {
