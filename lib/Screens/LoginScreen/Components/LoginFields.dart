@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, avoid_print, unnecessary_new, use_build_context_synchronously, prefer_interpolation_to_compose_strings
 
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -9,14 +10,17 @@ import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
 import 'package:yerper_admin/Screens/LoginScreen/LoginScreen.dart';
 import 'package:yerper_admin/User.dart';
 import 'package:yerper_admin/api.dart';
+import 'package:yerper_admin/main.dart';
 
 import '../../../constants.dart';
+
+User user = new User();
 
 class TextFields extends StatefulWidget {
   const TextFields({
     Key? key,
   }) : super(key: key);
-
+  static late String token;
   @override
   State<TextFields> createState() => _TextFieldsState();
 }
@@ -27,24 +31,29 @@ class _TextFieldsState extends State<TextFields> {
 
   Map<String, String> headers = {"Content-type": "application/json"};
   Future loginuser(String email1, String password1) async {
-    final json = jsonEncode({"email": email1, "password": password1});
-    var res = await http.post(Uri.parse(api+"/admin/verify"),
-        headers: headers,
-        // body: JsonEncoder({})
-        body: json);
-
-    try {
-      final result = jsonDecode(res.body);
-      print(result);
+    final json = jsonEncode({"uid": email1, "password": password1});
+    var res = await http.post(Uri.parse(api + "/user/authenticate"),
+        headers: headers, body: json);
+    // var res = await http.post(Uri.parse(api + "/admin/verify"),
+    //     headers: headers,
+    //     // body: JsonEncoder({})
+    //     body: json);
+    print(res.body);
+    print(res);
+    if (res.statusCode != 403) {
+      print(res.body);
       Provider.of<User>(context, listen: false)
-          .signin(result["email"], result["password"], result["id"]);
+          .signin(email1, password1, email1, res.body);
+
+      user.token = res.body;
+      TextFields.token = res.body;
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => HomeScreen(),
         ),
       );
-    } catch (_) {
+    } else {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -52,6 +61,7 @@ class _TextFieldsState extends State<TextFields> {
         ),
       );
     }
+
     // Navigator.push(
     //   context,
     //   MaterialPageRoute(

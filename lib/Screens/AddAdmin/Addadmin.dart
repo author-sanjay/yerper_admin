@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:yerper_admin/Screens/AddAdmin/ListofAdmins.dart';
 import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
+import 'package:yerper_admin/Screens/LoginScreen/Components/LoginFields.dart';
 import 'package:yerper_admin/constants.dart';
 import 'package:http/http.dart' as http;
 
@@ -21,13 +22,16 @@ class _AddadminState extends State<Addadmin> {
   late String? name = null;
 
   Future<void> addadmin(String email, String password, String name) async {
-    final json =
-        jsonEncode({"email": email, "password": password, "name": name});
+    final json = jsonEncode(
+        {"email": email, "password": password, "name": name, "id": email});
     print(json);
-    Map<String, String> headers = {"Content-type": "application/json"};
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + TextFields.token.toString(),
+    };
     var res = await http.post(Uri.parse(api + "/admin/add"),
         headers: headers, body: json);
-    print("res.body");
+    print(res.statusCode);
     if (jsonDecode(res.body)) {
       // ignore: use_build_context_synchronously
       Navigator.push(
@@ -180,38 +184,38 @@ class _AddadminState extends State<Addadmin> {
                     ),
                   ),
                 ),
-                const Divider(
-                  color: Colors.black,
-                  height: 25,
-                  thickness: 1,
-                  indent: 5,
-                  endIndent: 5,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 18.0),
-                  child: Text(
-                    "OR",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: (() {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ListofAdmins(),
-                      ),
-                    );
-                  }),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 18.0),
-                    child: Text(
-                      "Delete Admin",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
-                    ),
-                  ),
-                ),
+                // const Divider(
+                //   color: Colors.black,
+                //   height: 25,
+                //   thickness: 1,
+                //   indent: 5,
+                //   endIndent: 5,
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 18.0),
+                //   child: Text(
+                //     "OR",
+                //     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
+                //   ),
+                // ),
+                // GestureDetector(
+                //   onTap: (() {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //         builder: (context) => ListofAdmins(),
+                //       ),
+                //     );
+                //   }),
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(top: 18.0),
+                //     child: Text(
+                //       "Delete Admin",
+                //       style:
+                //           TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
+                //     ),
+                //   ),
+                // ),
               ]),
             ),
           ),

@@ -5,9 +5,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:yerper_admin/Screens/DetailsScreen/Components/IconsandImage.dart';
 import 'package:yerper_admin/Screens/DetailsScreen/Components/Image.dart';
+import 'package:yerper_admin/Screens/LoginScreen/Components/LoginFields.dart';
 import 'package:yerper_admin/api.dart';
 import 'package:yerper_admin/constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:yerper_admin/main.dart';
 
 import '../../HomeScreen/HomeScreen.dart';
 import '../../LoginScreen/LoginScreen.dart';
@@ -20,7 +22,11 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  Map<String, String> headers = {"Content-type": "application/json"};
+  String token = user.token.toString();
+  Map<String, String> headers = {
+    "Content-type": "application/json",
+    "Authorization": "Bearer " + user.token.toString(),
+  };
   Future<void> post(
       String name,
       int actual,

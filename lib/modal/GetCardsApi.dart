@@ -4,20 +4,19 @@ import 'dart:convert';
 
 import 'package:yerper_admin/Screens/LoginScreen/Components/LoginFields.dart';
 import 'package:yerper_admin/api.dart';
-
-import 'package:yerper_admin/modal/GetDeals.dart';
+import 'package:yerper_admin/modal/GetCards.dart';
 import 'package:http/http.dart' as http;
 
-class Getdealsapi {
+class GetCardApi {
   static bool hasdata = true;
-  static Future<List<GetDeals>> getDeals() async {
+  static Future<List<GetCards>> getCards() async {
     // String token = user.token.toString();
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Authorization": "Bearer " + TextFields.token.toString(),
     };
     var res =
-        await http.get(Uri.parse(api + "/deals/getactive"), headers: headers);
+        await http.get(Uri.parse(api + "/cards/getall"), headers: headers);
     print(res.statusCode);
     print(res.body);
     print(res.headers);
@@ -30,6 +29,6 @@ class Getdealsapi {
       // print(i);
     }
 
-    return GetDeals.dealsfromapi(_temp);
+    return GetCards.dealsfromapi(_temp);
   }
 }

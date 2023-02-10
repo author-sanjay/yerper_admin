@@ -3,8 +3,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:yerper_admin/Screens/LoginScreen/Components/LoginFields.dart';
 import 'package:yerper_admin/constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:yerper_admin/main.dart';
 
 import '../../api.dart';
 
@@ -31,30 +33,39 @@ class _ReportsState extends State<Reports> {
   }
 
   Future<void> getreports() async {
-    Map<String, String> headers = {"Content-type": "application/json"};
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + user.token.toString(),
+    };
     var res = await http.get(Uri.parse('$api/admin/total'), headers: headers);
-    var result = jsonDecode(res.body);
+    print(res.statusCode);
+    print(res.body);
+    var result = res.body;
     // print(result);
-    var res2 =
-        await http.get(Uri.parse('$api/admin/active'), headers: headers);
-    var result2 = jsonDecode(res2.body);
+    var res2 = await http.get(Uri.parse('$api/admin/active'), headers: headers);
+    var result2 = res2.body;
+    print(result2);
     // print(result);
     var res3 =
         await http.get(Uri.parse('$api/admin/dealsactive'), headers: headers);
-    var result3 = jsonDecode(res3.body);
-    var res4 = await http.get(Uri.parse('$api/admin/dealscomplete'),
+    var result3 = res3.body;
+    print(result3);
+    var res4 =
+        await http.get(Uri.parse('$api/admin/dealscomplete'), headers: headers);
+    var result4 = res4.body;
+    print(result4);
+    var res5 = await http.get(
+        Uri.parse('$api/user/getwalletbalance/' + "sanjay"),
         headers: headers);
-    var result4 = jsonDecode(res4.body);
-    var res5 =
-        await http.get(Uri.parse('$api/admin/balance'), headers: headers);
-    var result5 = jsonDecode(res5.body);
+    var result5 = res5.body;
+    print(result5);
     setState(() {
       loading = false;
-      total = result;
-      active = result2;
-      activedeals = result3;
-      deals = result4;
-      balance = result5;
+      total = int.parse(result);
+      active = int.parse(result2);
+      activedeals = int.parse(result3);
+      deals = int.parse(result4);
+      balance = int.parse(result5);
     });
   }
 
@@ -166,7 +177,10 @@ class bodyy extends StatelessWidget {
                       // height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: const [Color(0xffb1e6fe), Color(0xffd47fe3)],
+                            colors: const [
+                              Color(0xffb1e6fe),
+                              Color(0xffd47fe3)
+                            ],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
@@ -239,8 +253,8 @@ class bodyy extends StatelessWidget {
                           ),
                           Flexible(
                             child: Text("$balance",
-                                style:
-                                    TextStyle(fontSize: 30, color: Colors.black)),
+                                style: TextStyle(
+                                    fontSize: 30, color: Colors.black)),
                           )
                         ],
                       )),
@@ -298,7 +312,10 @@ class bodyy extends StatelessWidget {
                       // height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: const [Color(0xffff8862), Color(0xffb69184)],
+                            colors: const [
+                              Color(0xffff8862),
+                              Color(0xffb69184)
+                            ],
                             begin: Alignment.bottomRight,
                             end: Alignment.topLeft,
                           ),

@@ -39,12 +39,14 @@ class ItemCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => Details(
-                actualprice: actual,
-                card: cardname,
-                earning: profit.toInt(),
-                offer: offer,
-                desc: desc,
-                photo: image),
+              actualprice: actual,
+              card: cardname,
+              earning: profit.toInt(),
+              offer: offer,
+              desc: desc,
+              photo: image,
+              id: id,
+            ),
           ),
         );
       },
@@ -93,40 +95,12 @@ class ItemCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          alignment: Alignment.center,
-                          child: Column(
-                            children: <Widget>[
-                              Text(
-                                "Offer Left",
-                                style: TextStyle(color: Colors.green),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Spacer(),
-                        Container(
-                          alignment: Alignment.center,
-                          child: Column(
-                            children: <Widget>[
-                              Text("10"),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  )
                 ],
               ),
             )
           ],
         ),
       ),
-   
     );
   }
 }

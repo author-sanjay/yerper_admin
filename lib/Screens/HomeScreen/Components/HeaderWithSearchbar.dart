@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:yerper_admin/Screens/LoginScreen/Components/LoginFields.dart';
 
 import '../../../api.dart';
 import '../../../constants.dart';
@@ -25,7 +26,10 @@ class _HeaderWithSearchbarState extends State<HeaderWithSearchbar> {
   late int users;
 
   Future<void> getuser() async {
-    Map<String, String> headers = {"Content-type": "application/json"};
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + TextFields.token.toString(),
+    };
     var res2 =
         await http.get(Uri.parse(api + '/admin/active'), headers: headers);
     var result2 = jsonDecode(res2.body);

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
+import 'package:yerper_admin/Screens/LoginScreen/Components/LoginFields.dart';
 import 'package:yerper_admin/constants.dart';
 import 'package:yerper_admin/modal/GetDeals.dart';
 import 'package:yerper_admin/modal/GetDealsapi.dart';
@@ -149,7 +150,10 @@ class _cardState extends State<card> {
   static bool clicked = false;
 
   Future<void> markcomplete(int id) async {
-    Map<String, String> headers = {"Content-type": "application/json"};
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + TextFields.token.toString(),
+    };
     var res = await http.put(
         Uri.parse(api + '/deals/complete/' + id.toString()),
         headers: headers);
@@ -171,16 +175,19 @@ class _cardState extends State<card> {
             TextButton(
               child: const Text('OK'),
               onPressed: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(),),);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
+                );
               },
             ),
           ],
         ),
       ),
     );
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   Future<void> delete(int id) async {
@@ -288,7 +295,6 @@ class _cardState extends State<card> {
                               fontSize: 15, fontWeight: FontWeight.w500),
                         ))),
                   ),
-                 
                 ],
               ),
             )

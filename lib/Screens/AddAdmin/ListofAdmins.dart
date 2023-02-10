@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:yerper_admin/Admin.dart';
 import 'package:yerper_admin/Adminmodelapi.dart';
 import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
+import 'package:yerper_admin/Screens/LoginScreen/Components/LoginFields.dart';
 
 import '../../api.dart';
 
@@ -21,13 +22,22 @@ class _ListofAdminsState extends State<ListofAdmins> {
   bool _isloading = true;
 
   Future<void> delete(int id) async {
-    Map<String, String> headers = {"Content-type": "application/json"};
-    var res = await http.delete(Uri.parse(api + '/admin/delete/' + id.toString()),
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + TextFields.token.toString(),
+    };
+    var res = await http.delete(
+        Uri.parse(api + '/admin/delete/' + id.toString()),
         headers: headers);
     var result = jsonDecode(res.body);
     print(result);
     setState(() {
-      Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen(),),);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
+      );
     });
   }
 

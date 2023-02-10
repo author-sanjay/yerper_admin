@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yerper_admin/Screens/Add%20Card/AddCard.dart';
 import 'package:yerper_admin/Screens/Add%20a%20new%20Deal/AddDeal.dart';
 import 'package:yerper_admin/Screens/AddAdmin/Addadmin.dart';
+import 'package:yerper_admin/Screens/Card/Delete.dart';
 import 'package:yerper_admin/Screens/DetailsScreen/DetailsSceen.dart';
 import 'package:yerper_admin/Screens/HomeScreen/Components/Body.dart';
 import 'package:yerper_admin/Screens/Reports/Reports.dart';
@@ -153,6 +154,55 @@ class drawer extends StatelessWidget {
                                 children: <Widget>[
                                   Text(
                                     "Add Card",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w300),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DeleteCard(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 32),
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(18))),
+                              child: Icon(
+                                Icons.credit_card,
+                                color: Color.fromARGB(255, 0, 0, 0),
+                              ),
+                              padding: EdgeInsets.all(12),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Delete Card",
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w300),

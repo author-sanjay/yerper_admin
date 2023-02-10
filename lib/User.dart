@@ -3,13 +3,16 @@
 import 'package:flutter/cupertino.dart';
 
 class User extends ChangeNotifier {
-  late final String email;
-  late final String password;
-  late final int id;
+  late String? email;
+  late String? password;
+  late String? id;
+  late String? token;
 
-  void signin(String email, String password, int id) {
+  void signin(String email, String password, String id, String token) {
     email = email;
     password = password;
     id = id;
+    token = token;
+    notifyListeners();
   }
 }

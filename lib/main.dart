@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
+import 'package:yerper_admin/Screens/LoginScreen/LoginScreen.dart';
 import 'package:yerper_admin/User.dart';
 import 'package:yerper_admin/constants.dart';
 
@@ -12,7 +13,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => User())],
-      child: MyApp()));
+      child: Consumer<User>(builder: ((context, provider, child) => MyApp()))));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,6 +31,6 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         // ignore: prefer_const_constructors
-        home: HomeScreen());
+        home: LoginScreen());
   }
 }

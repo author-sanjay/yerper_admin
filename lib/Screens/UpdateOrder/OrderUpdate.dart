@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:yerper_admin/Screens/LoginScreen/Components/LoginFields.dart';
 import 'package:yerper_admin/constants.dart';
 
 import '../../api.dart';
@@ -22,7 +23,10 @@ class _OrderUpdateState extends State<OrderUpdate> {
 
   late String? orderid;
   Future<void> getdetails(int id) async {
-    Map<String, String> headers = {"Content-type": "application/json"};
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + TextFields.token.toString(),
+    };
     var res = await http.get(Uri.parse('$api/orders/getsingleorder/$id'),
         headers: headers);
     if (res.statusCode == 404) {
@@ -64,7 +68,10 @@ class _OrderUpdateState extends State<OrderUpdate> {
   }
 
   Future<void> updatecomplete(int uid, String status) async {
-    Map<String, String> headers = {"Content-type": "application/json"};
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + TextFields.token.toString(),
+    };
     final json = jsonEncode({"id": uid});
     var res =
         await http.put(Uri.parse('$api/orders/update/$uid'), headers: headers);
@@ -97,7 +104,10 @@ class _OrderUpdateState extends State<OrderUpdate> {
   }
 
   Future<void> notdelivered(int uid, String status) async {
-    Map<String, String> headers = {"Content-type": "application/json"};
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + TextFields.token.toString(),
+    };
     final json = jsonEncode({"order_status": status, "platformtxnid": txnid});
     var res = await http.post(Uri.parse('$api/orders/updatesingle/$uid'),
         headers: headers, body: json);

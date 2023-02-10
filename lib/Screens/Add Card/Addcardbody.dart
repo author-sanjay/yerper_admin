@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:yerper_admin/Screens/LoginScreen/Components/LoginFields.dart';
 
 import 'package:yerper_admin/constants.dart';
 import 'package:http/http.dart' as http;
@@ -22,7 +23,10 @@ class CardBody extends StatefulWidget {
 class _CardBodyState extends State<CardBody> {
   late String? photo;
   late String name = "";
-  Map<String, String> headers = {"Content-type": "application/json"};
+  Map<String, String> headers = {
+    "Content-type": "application/json",
+    "Authorization": "Bearer " + TextFields.token.toString(),
+  };
   Future<void> uploadcard(String name, String photo) async {
     final json = jsonEncode({
       "name": name,

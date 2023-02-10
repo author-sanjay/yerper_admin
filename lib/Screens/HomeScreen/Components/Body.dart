@@ -38,40 +38,48 @@ class _BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: SafeArea(
-        child: _isloading?Center(child: CircularProgressIndicator(),): Column(
-          children: <Widget>[
-            HeaderWithSearchbar(size: size),
-            TitleWithButton(),
-            _isloading
+        child: _isloading
+            ? Getdealsapi.hasdata
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
-                : Wrap(
-                    children: [
-                      for (var i in _getdeals)
-                        ItemCard(
-                          id: i.id,
-                          cardname: i.card,
-                          itemname: i.name,
-                          profit: i.earning.toDouble(),
-                          site: 'Flipkart',
-                          image: i.images,
-                          press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DetailsScreen(),
-                              ),
-                            );
-                          },
-                          actual: i.actual,
-                          desc: i.desc,
-                          offer: i.offer,
-                        ),
-                    ],
+                : Center(
+                    child: Text("Sorry We are Out of deals"),
                   )
-          ],
-        ),
+            : Column(
+                children: <Widget>[
+                  HeaderWithSearchbar(size: size),
+                  TitleWithButton(),
+                  _isloading
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Wrap(
+                          children: [
+                            for (var i in _getdeals)
+                              ItemCard(
+                                id: i.id,
+                                cardname: i.card,
+                                itemname: i.name,
+                                profit: i.earning.toDouble(),
+                                site: 'Flipkart',
+                                image: i.images,
+                                press: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailsScreen(),
+                                    ),
+                                  );
+                                },
+                                actual: i.actual,
+                                desc: i.desc,
+                                offer: i.offer,
+                              ),
+                          ],
+                        )
+                ],
+              ),
       ),
     );
   }
