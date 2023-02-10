@@ -2,6 +2,7 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
 import 'package:yerper_admin/Screens/LoginScreen/LoginScreen.dart';
@@ -11,9 +12,12 @@ import 'package:yerper_admin/constants.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => User())],
-      child: Consumer<User>(builder: ((context, provider, child) => MyApp()))));
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+      (data) => runApp(MultiProvider(
+          providers: [ChangeNotifierProvider(create: (_) => User())],
+          child: Consumer<User>(
+              builder: ((context, provider, child) => MyApp())))));
 }
 
 class MyApp extends StatelessWidget {
