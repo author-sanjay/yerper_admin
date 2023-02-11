@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:yerper_admin/Screens/Add%20a%20new%20Deal/Components/Body.dart';
 import 'package:http/http.dart' as http;
+import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
 import 'package:yerper_admin/Screens/LoginScreen/Components/LoginFields.dart';
 import 'package:yerper_admin/api.dart';
 
@@ -37,6 +38,12 @@ class _DetailsState extends State<Details> {
         Uri.parse(api + "/deals/delete/" + id.toString()),
         headers: headers);
     print(res.statusCode);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomeScreen(),
+      ),
+    );
   }
 
   @override

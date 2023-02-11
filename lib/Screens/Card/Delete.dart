@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:yerper_admin/Screens/LoginScreen/Components/LoginFields.dart';
+import 'package:yerper_admin/Screens/HomeScreen/HomeScreen.dart';
 import 'package:yerper_admin/api.dart';
 import 'package:yerper_admin/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:yerper_admin/modal/GetCards.dart';
 import 'package:yerper_admin/modal/GetCardsApi.dart';
-import 'package:yerper_admin/modal/GetDealsapi.dart';
+
+import '../LoginScreen/Components/LoginFields.dart';
 
 class DeleteCard extends StatelessWidget {
   const DeleteCard({super.key});
@@ -40,12 +39,21 @@ class _DeleteBodyState extends State<DeleteBody> {
   }
 
   Future<void> delete(int id) async {
-    Map<String, String> headers = {"Content-type": "application/json"};
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + TextFields.token.toString(),
+    };
     var res = await http.delete(
         Uri.parse(api + "/cards/delete/" + id.toString()),
         headers: headers);
 
     print(res.statusCode);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomeScreen(),
+      ),
+    );
   }
 
   Future<void> getDeals() async {
